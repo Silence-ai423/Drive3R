@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9f8">
+  <meta name="description" content="Drive3R is a block-wise streaming geometric foundation model for long-horizon, multi-camera autonomous driving reconstruction. Explore the paper, animated comparisons, method, and results.">
+  <meta property="og:title" content="Drive3R — Geometry that goes the distance">
+  <meta property="og:description" content="Block-wise Streaming Geometric Foundation Models for Autonomous Driving">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://silence-ai423.github.io/drive3r-project-page/assets/kitti-sequence-10-still.jpg">
+  <title>Drive3R | Block-wise Streaming Geometry for Autonomous Driving</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Drive3R<span class="brand-dot">.</span></a>
+      <div class="nav-links"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a></div>
+      <a class="nav-paper" href="assets/drive3r-paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="paper-title">
+      <div class="eyebrow hero-eyebrow"><span class="status-dot"></span>AUTONOMOUS DRIVING · GEOMETRIC FOUNDATION MODELS</div>
+      <h1 id="paper-title">Drive<span>3R</span></h1>
+      <h2 class="paper-title">Block-wise Streaming Geometric Foundation Models<br class="desktop-break"> for Autonomous Driving</h2>
+      <p class="hero-line">Geometry that goes the distance.</p>
+      <div class="authors" aria-label="Paper authors">
+        <span>Tianyi Yang<sup>1,2</sup></span><span>Haojun Yang<sup>1</sup></span><span>Jipeng Xiao<sup>1</sup></span><span>Xuesong Chen<sup>2</sup></span><span>Shaoshuai Shi<sup>2</sup></span><span>Li Jiang<sup>3</sup></span><span>Zhipeng Zhang<sup>1,*</sup></span>
+      </div>
+      <div class="affiliations"><p><sup>1</sup> School of Artificial Intelligence, Shanghai Jiao Tong University</p><p><sup>2</sup> Voyager Research, Didi Chuxing <span class="affiliation-sep">·</span> <sup>3</sup> The Chinese University of Hong Kong, Shenzhen</p><p class="correspondence">* Corresponding author</p></div>
+      <div class="hero-actions"><a class="button primary" href="assets/drive3r-paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Paper <span aria-hidden="true">↗</span></a><a class="button secondary" href="#demos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7z"/></svg>Explore the demos</a><span class="release-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-14-2 16"/></svg>Code release forthcoming</span></div>
+    </section>
+
+    <section class="demo-section wrap" id="demos" aria-labelledby="demo-title">
+      <div class="demo-intro"><div><div class="eyebrow">SEE IT IN MOTION</div><h2 id="demo-title">Long drives. Coherent worlds.</h2></div><p>Watch geometry accumulate over time.<br>Drive3R on the left. DVGT-2 on the right.</p></div>
+      <div class="demo-viewer">
+        <div class="viewer-toolbar"><div class="dataset-tabs" role="tablist" aria-label="Reconstruction demo"><button type="button" role="tab" id="tab-kitti" aria-selected="true" aria-controls="demo-panel" data-demo="kitti">KITTI <span>Sequence 10</span></button><button type="button" role="tab" id="tab-waymo" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-demo="waymo">Waymo <span>102436</span></button></div><div class="viewer-status"><span></span><span id="gif-status">LOOPING GIF</span></div></div>
+        <div id="demo-panel" role="tabpanel" aria-labelledby="tab-kitti" class="demo-panel"><img id="demo-image" src="assets/kitti-sequence-10.gif" width="1280" height="720" alt="Animated comparison of Drive3R and DVGT-2 on KITTI sequence 10. Drive3R is shown on the left; the ground-truth trajectory appears at the end." fetchpriority="high"></div>
+        <div class="viewer-footer"><p><span class="legend-dot gold"></span>Prediction <span class="legend-dot cyan"></span>Ground truth <span class="footer-separator">/</span><span id="demo-speed">4× playback</span></p><div class="viewer-controls"><button id="pause-gif" type="button" aria-pressed="false"><span class="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">Pause</span></button><button id="replay-gif" type="button"><span aria-hidden="true">↻</span> Replay</button></div></div>
+      </div>
+      <p class="demo-caption" id="demo-caption">KITTI sequence 10 · full reconstruction progression, accelerated 4×. The cyan ground-truth trajectory is revealed at the end and held before the loop restarts.</p>
+      <noscript><div class="no-js-demo"><h3>Waymo 102436</h3><img src="assets/waymo-102436.gif" width="1280" height="720" alt="Drive3R and DVGT-2 reconstruction comparison on Waymo 102436"><p>Original-speed reconstruction; ground truth is revealed at the end.</p></div></noscript>
+    </section>
+
+    <section class="overview-section wrap section" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading"><div class="eyebrow">01 / THE IDEA</div><h2 id="overview-title">Local context.<br>Long-range consistency.</h2></div>
+      <div class="overview-copy"><p class="lead">Driving logs do not end after a short clip. Their geometry should hold together for the whole journey.</p><p>Fully bidirectional models struggle with the memory cost of long sequences. Per-frame streaming loses local future context and accumulates drift. Fixed chunks preserve local reasoning, but fragment the global scene.</p><p><strong>Drive3R brings the strengths together:</strong> bidirectional attention within each block, causal feature propagation across blocks, and confidence-aware re-anchoring when the streaming state becomes unreliable.</p><details class="abstract"><summary>Read the abstract <span aria-hidden="true">+</span></summary><p>High-fidelity closed-loop simulation for autonomous driving increasingly relies on dense multi-view 3D reconstruction. While recent feed-forward geometric foundation models have revolutionized per-scene optimization, applying them to continuous, long-horizon driving sequences is computationally intractable due to GPU memory limits and the quadratic complexity of global attention. Existing scaling strategies are fundamentally limited, as causal streaming suffers from compounding scale drift and trajectory deviation, while rigid “chunk-then-align” heuristics fragment global context and produce trajectory discontinuities. To address these limitations, we introduce Drive3R, a block-wise streaming geometric foundation model. Its block-wise causal attention resolves the scalability bottleneck of fully bidirectional attention while avoiding the loss of local future context in purely causal streaming. Its confidence-aware re-anchoring further mitigates long-range drift by detecting unreliable streaming states, re-initializing the KV cache, and stitching refreshed segments through SE(3) alignment. Extensive experiments demonstrate that Drive3R establishes a new state-of-the-art on nuScenes, KITTI, and Waymo. Specifically, on nuScenes, it improves over the recent DVGT-2 baseline from 0.1806 to 0.1081 in AbsRel, from 0.6750 to 0.5344 in point-cloud Accuracy, and from 1.5812 to 0.9092 in ATE. Code will be released.</p></details></div>
+    </section>
+    <div class="wrap"><div class="metric-strip"><div class="metric"><span class="metric-context">nuScenes · Depth AbsRel ↓</span><strong>0.1081</strong><span><b>40.1%</b> lower than DVGT-2</span></div><div class="metric"><span class="metric-context">nuScenes · Point-cloud Accuracy ↓</span><strong>0.5344</strong><span><b>20.8%</b> lower than DVGT-2</span></div><div class="metric"><span class="metric-context">nuScenes · Trajectory ATE ↓</span><strong>0.9092</strong><span><b>42.5%</b> lower than DVGT-2</span></div></div><p class="metrics-note">15-frame, full-view evaluation. Relative error reductions are calculated from the paper’s reported values.</p></div>
+
+    <section class="section method-section" id="method" aria-labelledby="method-title"><div class="wrap">
+      <div class="section-heading horizontal"><div><div class="eyebrow">02 / HOW IT WORKS</div><h2 id="method-title">Think in blocks.<br>Keep the bigger picture.</h2></div><p>One model for metric geometry,<br>ego-motion, and streaming reliability.</p></div>
+      <figure class="paper-figure architecture-figure"><img src="assets/architecture.webp" alt="Drive3R pipeline: intrinsic-aware image encoding, a spatio-temporal decoder with streamed KV memory, and prediction heads for geometry, ego pose, metric scale, and confidence." width="2200" height="833" loading="lazy"><figcaption><span>THE ARCHITECTURE</span>Multi-camera image blocks → intrinsic-aware encoder → spatio-temporal decoder → dense geometry and ego-motion.</figcaption></figure>
+      <div class="method-grid"><article><div class="method-number">01<span class="mini-blocks" aria-hidden="true"><i></i><i></i><i></i></span></div><h3>Block-wise causal attention</h3><p>Frames and camera views inside a block reason together bidirectionally. Across blocks, a causal KV cache carries historical features forward without recomputing the entire sequence.</p><div class="method-tags"><span>Local bidirectional context</span><span>Cross-block memory</span></div></article><article><div class="method-number">02<svg viewBox="0 0 100 35" aria-hidden="true"><path d="M2 30C22 30 20 5 40 5s16 24 36 24S86 15 98 15"/><circle cx="40" cy="5" r="4"/><circle cx="76" cy="29" r="4"/></svg></div><h3>Confidence-aware re-anchoring</h3><p>A block-level confidence head monitors the streaming state. When confidence drops, Drive3R resets the cache and uses overlapping poses to align a refreshed segment into the global frame with SE(3).</p><div class="method-tags"><span>Adaptive cache reset</span><span>SE(3) alignment</span></div></article></div>
+      <figure class="paper-figure paradigm-figure"><img src="assets/attention-paradigms.webp" alt="Comparison of offline, per-frame streaming, chunk-then-align, and Drive3R block-wise streaming attention patterns." width="2000" height="448" loading="lazy"><figcaption><span>FOUR PARADIGMS</span>Drive3R preserves local future context while maintaining a continuous streaming memory.</figcaption></figure>
+    </div></section>
+
+    <section class="section wrap results-section" id="results" aria-labelledby="results-title"><div class="section-heading horizontal"><div><div class="eyebrow">03 / THE EVIDENCE</div><h2 id="results-title">Better geometry.<br>Measured across benchmarks.</h2></div><a class="text-link" href="assets/drive3r-paper.pdf" target="_blank" rel="noopener">Full experimental details <span aria-hidden="true">↗</span></a></div>
+      <div class="result-tabs" role="tablist" aria-label="Benchmark results"><button role="tab" id="result-tab-nuscenes" aria-selected="true" aria-controls="result-panel" data-benchmark="nuscenes" type="button">nuScenes</button><button role="tab" id="result-tab-waymo" aria-selected="false" aria-controls="result-panel" tabindex="-1" data-benchmark="waymo" type="button">Waymo</button><button role="tab" id="result-tab-kitti" aria-selected="false" aria-controls="result-panel" tabindex="-1" data-benchmark="kitti" type="button">KITTI</button></div>
+      <div class="results-card" id="result-panel" role="tabpanel" aria-labelledby="result-tab-nuscenes"><div class="results-top"><h3 id="result-heading">Dense geometry & ego-motion</h3><p id="result-protocol">15 frames · full camera views</p></div><div class="table-scroll" tabindex="0" aria-label="Scrollable results table"><table id="results-table"><caption class="sr-only">nuScenes results under the 15-frame, full-view setting</caption><thead><tr><th scope="col">Method</th><th scope="col">AbsRel ↓</th><th scope="col">δ &lt; 1.25 ↑</th><th scope="col">Accuracy ↓</th><th scope="col">Completeness ↓</th><th scope="col">AUC@30 ↑</th><th scope="col">ATE ↓</th></tr></thead><tbody><tr><th scope="row">DVGT-2</th><td>0.1806</td><td>0.7285</td><td>0.6750</td><td>0.6230</td><td>85.08</td><td>1.5812</td></tr><tr class="ours-row"><th scope="row">Drive3R <span>Ours</span></th><td>0.1081</td><td>0.9077</td><td>0.5344</td><td>0.5374</td><td>86.92</td><td>0.9092</td></tr></tbody></table></div><div class="result-notes"><p id="result-takeaway">Drive3R leads five of six reported nuScenes metrics. DVGT has the highest AUC@30.</p><p id="result-footnote">* Relative-scale models are aligned to recover metric scale. Bold values indicate the best result in each column.</p></div></div>
+      <div class="long-range-callout"><div class="callout-number">41.7<span>average ATE ↓</span></div><div><h3>Complete driving logs, without losing the thread.</h3><p>On KITTI Stereo 2 Hz, Drive3R reports the lowest average ATE across all 11 sequences, compared with 75.5 for DVGT-2. ATE is evaluated after Sim(3) alignment.</p></div><span class="callout-label">KITTI / 11 SEQUENCES</span></div>
+    </section>
+
+    <section class="section qualitative-section"><div class="wrap"><div class="section-heading horizontal"><div><div class="eyebrow">04 / A CLOSER LOOK</div><h2>Structure that stays sharp.</h2></div><p>Road surfaces, object boundaries,<br>and long-range trajectories.</p></div><figure class="paper-figure"><img src="assets/qualitative-comparison.webp" width="1224" height="292" loading="lazy" alt="Qualitative geometric comparison from the paper. Highlighted regions compare local structures reconstructed by streaming baselines and Drive3R."><figcaption><span>DENSE RECONSTRUCTION</span>Highlighted regions show the paper’s comparison of local geometry with per-frame streaming baselines.</figcaption></figure><figure class="paper-figure trajectory-figure"><img src="assets/kitti-trajectories.webp" width="2200" height="648" loading="lazy" alt="Paper figure comparing estimated trajectories with ground truth on KITTI sequences 09 and 10."><figcaption><span>LONG-SEQUENCE EGO-MOTION</span>KITTI sequences 09 and 10. Estimated trajectories are shown in teal; ground truth is shown as dashed gray curves.</figcaption></figure></div></section>
+
+    <section class="section wrap citation-section" id="citation"><div class="citation-intro"><div class="eyebrow">BUILD ON DRIVE3R</div><h2>A foundation for<br>the road ahead.</h2><p>For dense metric reconstruction and<br>long-horizon autonomous driving research.</p><a class="button primary" href="assets/drive3r-paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a></div><div class="citation-box"><div class="citation-top"><h3>BibTeX</h3><button type="button" id="copy-citation"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>Copy citation</span></button></div><pre><code id="bibtex">@misc{yang_drive3r,
+  title = {Drive3R: Block-wise Streaming Geometric
+    Foundation Models for Autonomous Driving},
+  author = {Yang, Tianyi and Yang, Haojun and
+    Xiao, Jipeng and Chen, Xuesong and Shi, Shaoshuai
+    and Jiang, Li and Zhang, Zhipeng},
+  note = {Research manuscript}
+}</code></pre><p class="citation-note">Manuscript citation. Publication metadata can be added when available.</p><p id="copy-status" class="sr-only" role="status" aria-live="polite"></p></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Drive3R<span class="brand-dot">.</span></a><p>Block-wise streaming. Globally coherent.</p><div><a href="assets/drive3r-paper.pdf">Paper</a><a href="#citation">Citation</a><a href="https://github.com/Silence-ai423/drive3r-project-page" target="_blank" rel="noopener">Page source <span aria-hidden="true">↗</span></a></div></div></footer>
+</body>
+</html>
