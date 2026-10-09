@@ -1,28 +1,4 @@
 "use strict";
-const demos = {
-  kitti: { gif: "assets/kitti-sequence-10.gif", still: "assets/kitti-sequence-10-still.jpg", speed: "4× playback", alt: "Animated comparison of Drive3R and DVGT-2 on KITTI sequence 10. Drive3R is on the left; ground truth appears at the end.", caption: "KITTI sequence 10 · full reconstruction progression, accelerated 4×. The cyan ground-truth trajectory is revealed at the end and held before the loop restarts." },
-  waymo: { gif: "assets/waymo-102436.gif", still: "assets/waymo-102436-still.jpg", speed: "Original speed", alt: "Animated comparison of Drive3R and DVGT-2 on Waymo 102436. Drive3R is on the left; ground truth appears at the end.", caption: "Waymo 102436 · original-speed reconstruction. The cyan ground-truth trajectory is revealed at the end and held before the loop restarts." }
-};
-let currentDemo = "kitti";
-let paused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const demoImage = document.getElementById("demo-image");
-const pauseButton = document.getElementById("pause-gif");
-function updateDemo() {
-  const demo = demos[currentDemo];
-  demoImage.src = paused ? demo.still : demo.gif;
-  demoImage.alt = paused ? demo.alt.replace("Animated comparison", "Final-frame comparison") : demo.alt;
-  document.getElementById("demo-speed").textContent = demo.speed;
-  document.getElementById("demo-caption").textContent = demo.caption;
-  document.getElementById("demo-panel").setAttribute("aria-labelledby", "tab-" + currentDemo);
-  updatePauseControls();
-}
-function updatePauseControls() {
-  pauseButton.setAttribute("aria-pressed", String(paused));
-  pauseButton.title = paused ? "Play animation" : "Pause and inspect the final ground-truth reveal";
-  document.getElementById("pause-label").textContent = paused ? "Play" : "Pause";
-  pauseButton.querySelector(".pause-icon").textContent = paused ? "▷" : "Ⅱ";
-  document.getElementById("gif-status").textContent = paused ? "FINAL FRAME" : "LOOPING GIF";
-}
 function initTabs(selector, activate) {
   const tabs = [...document.querySelectorAll(selector)];
   const select = tab => {
@@ -42,20 +18,6 @@ function initTabs(selector, activate) {
     });
   });
 }
-initTabs("[data-demo]", tab => { currentDemo = tab.dataset.demo; updateDemo(); });
-pauseButton.addEventListener("click", () => {
-  // Native GIFs have no frame-level playback API. Pause shows the final GT reveal.
-  paused = !paused;
-  updateDemo();
-});
-document.getElementById("replay-gif").addEventListener("click", () => {
-  paused = false;
-  demoImage.src = demos[currentDemo].gif + "?replay=" + Date.now();
-  demoImage.alt = demos[currentDemo].alt;
-  updatePauseControls();
-});
-if (paused) updateDemo();
-
 const datasets = {
   nuscenes: {
     label: "nuScenes", protocol: "15 frames · full camera views", title: "Dense geometry & ego-motion", takeaway: "Drive3R leads five of six reported nuScenes metrics. DVGT has the highest AUC@30.",

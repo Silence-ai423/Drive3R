@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f9f8">
-  <meta name="description" content="Drive3R is a block-wise streaming geometric foundation model for long-horizon, multi-camera autonomous driving reconstruction. Explore the paper, animated comparisons, method, and results.">
+  <meta name="description" content="Drive3R is a block-wise streaming geometric foundation model for long-horizon, multi-camera autonomous driving reconstruction. Explore the paper, method, and results.">
   <meta property="og:title" content="Drive3R — Geometry that goes the distance">
   <meta property="og:description" content="Block-wise Streaming Geometric Foundation Models for Autonomous Driving">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://silence-ai423.github.io/drive3r-project-page/assets/kitti-sequence-10-still.jpg">
+  <meta property="og:image" content="https://silence-ai423.github.io/drive3r-project-page/assets/architecture.webp">
   <title>Drive3R | Block-wise Streaming Geometry for Autonomous Driving</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
@@ -33,18 +33,7 @@
         <span>Tianyi Yang<sup>1,2</sup></span><span>Haojun Yang<sup>1</sup></span><span>Jipeng Xiao<sup>1</sup></span><span>Xuesong Chen<sup>2</sup></span><span>Shaoshuai Shi<sup>2</sup></span><span>Li Jiang<sup>3</sup></span><span>Zhipeng Zhang<sup>1,*</sup></span>
       </div>
       <div class="affiliations"><p><sup>1</sup> School of Artificial Intelligence, Shanghai Jiao Tong University</p><p><sup>2</sup> Voyager Research, Didi Chuxing <span class="affiliation-sep">·</span> <sup>3</sup> The Chinese University of Hong Kong, Shenzhen</p><p class="correspondence">* Corresponding author</p></div>
-      <div class="hero-actions"><a class="button primary" href="assets/drive3r-paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Paper <span aria-hidden="true">↗</span></a><a class="button secondary" href="#demos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7z"/></svg>Explore the demos</a><span class="release-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-14-2 16"/></svg>Code release forthcoming</span></div>
-    </section>
-
-    <section class="demo-section wrap" id="demos" aria-labelledby="demo-title">
-      <div class="demo-intro"><div><div class="eyebrow">SEE IT IN MOTION</div><h2 id="demo-title">Long drives. Coherent worlds.</h2></div><p>Watch geometry accumulate over time. <br>Drive3R on the left. DVGT-2 on the right.</p></div>
-      <div class="demo-viewer">
-        <div class="viewer-toolbar"><div class="dataset-tabs" role="tablist" aria-label="Reconstruction demo"><button type="button" role="tab" id="tab-kitti" aria-selected="true" aria-controls="demo-panel" data-demo="kitti">KITTI <span>Sequence 10</span></button><button type="button" role="tab" id="tab-waymo" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-demo="waymo">Waymo <span>102436</span></button></div><div class="viewer-status"><span></span><span id="gif-status">LOOPING GIF</span></div></div>
-        <div id="demo-panel" role="tabpanel" aria-labelledby="tab-kitti" class="demo-panel"><img id="demo-image" src="assets/kitti-sequence-10.gif" width="1280" height="720" alt="Animated comparison of Drive3R and DVGT-2 on KITTI sequence 10. Drive3R is shown on the left; the ground-truth trajectory appears at the end." fetchpriority="high"></div>
-        <div class="viewer-footer"><p><span class="legend-dot gold"></span>Prediction <span class="legend-dot cyan"></span>Ground truth <span class="footer-separator">/</span><span id="demo-speed">4× playback</span></p><div class="viewer-controls"><button id="pause-gif" type="button" aria-pressed="false"><span class="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">Pause</span></button><button id="replay-gif" type="button"><span aria-hidden="true">↻</span> Replay</button></div></div>
-      </div>
-      <p class="demo-caption" id="demo-caption">KITTI sequence 10 · full reconstruction progression, accelerated 4×. The cyan ground-truth trajectory is revealed at the end and held before the loop restarts.</p>
-      <noscript><div class="no-js-demo"><h3>Waymo 102436</h3><img src="assets/waymo-102436.gif" width="1280" height="720" alt="Drive3R and DVGT-2 reconstruction comparison on Waymo 102436"><p>Original-speed reconstruction; ground truth is revealed at the end.</p></div></noscript>
+      <div class="hero-actions"><a class="button primary" href="assets/drive3r-paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Paper <span aria-hidden="true">↗</span></a><span class="release-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-14-2 16"/></svg>Code release forthcoming</span></div>
     </section>
 
     <section class="overview-section wrap section" id="overview" aria-labelledby="overview-title">
