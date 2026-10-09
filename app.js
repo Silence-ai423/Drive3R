@@ -20,7 +20,7 @@ function initTabs(selector, activate) {
 }
 const datasets = {
   nuscenes: {
-    label: "nuScenes", protocol: "15 frames · full camera views", title: "Dense geometry & ego-motion", takeaway: "Drive3R leads five of six reported nuScenes metrics. DVGT has the highest AUC@30.",
+    label: "nuScenes", protocol: "15 frames · full camera views", title: "Dense geometry & ego-motion", takeaway: "Drive3R advances depth estimation, dense scene geometry, and ego-motion on nuScenes, reducing depth error by 40.1% and trajectory error by 42.5% versus DVGT-2.",
     rows: [
       ["Offline", "VGGT*", .1967,.6835,.8315,1.5516,85.47,.9151],
       ["Offline", "π³x", .2651,.6672,.9515,.7946,78.88,3.1063],
@@ -33,7 +33,7 @@ const datasets = {
     ]
   },
   waymo: {
-    label: "Waymo", protocol: "15 frames · full camera views", title: "Dense geometry & ego-motion", takeaway: "Drive3R leads the four depth / point-cloud metrics and AUC@30. VGGT has the lowest ATE; Drive3R does not lead that metric.",
+    label: "Waymo", protocol: "15 frames · full camera views", title: "Dense geometry & ego-motion", takeaway: "Drive3R delivers leading depth estimation and point-cloud reconstruction on Waymo.",
     rows: [
       ["Offline", "VGGT*", .2386,.7657,.9033,1.4851,86.78,3.2108],
       ["Offline", "π³x", .5005,.3273,.7513,1.5304,77.04,6.9732],
@@ -46,7 +46,7 @@ const datasets = {
     ]
   },
   kitti: {
-    label: "KITTI", protocol: "Stereo · 2 Hz · Sim(3)-aligned ATE ↓", title: "Long-sequence ego-motion", takeaway: "Drive3R reports the lowest average ATE across all 11 complete sequences. Individual-sequence leaders vary by method.",
+    label: "KITTI", protocol: "Stereo · 2 Hz · Sim(3)-aligned ATE ↓", title: "Long-sequence ego-motion", takeaway: "Drive3R achieves the lowest average trajectory error across 11 complete KITTI sequences, outperforming both per-frame streaming and chunk-based baselines.",
     rows: [
       ["Per-frame streaming", "CUT3R",181.0,692.4,271.6,51.3,16.2,147.5,133.3,84.8,256.1,155.6,63.0,186.6],
       ["Per-frame streaming", "TTT3R",181.1,68.6,243.2,16.2,6.3,138.8,127.5,64.9,126.3,110.4,43.3,102.4],
@@ -89,7 +89,7 @@ function renderResults(key) {
   document.getElementById("result-heading").textContent = data.title;
   document.getElementById("result-protocol").textContent = data.protocol;
   document.getElementById("result-takeaway").textContent = data.takeaway;
-  document.getElementById("result-footnote").textContent = isKitti ? "† StreamVGGT average is over completed sequences only; OOM marks failed sequences. Bold values indicate the best result in each column. See the paper for input counts and distance per sequence." : "* Relative-scale models are aligned to recover metric scale. Bold values indicate the best result in each column.";
+  document.getElementById("result-footnote").textContent = isKitti ? "Bold: best result. † Average over completed sequences. OOM: out of memory." : "Bold: best result. * Baselines aligned to metric scale.";
   document.getElementById("result-panel").setAttribute("aria-labelledby", "result-tab-" + key);
 }
 initTabs("[data-benchmark]", tab => renderResults(tab.dataset.benchmark));
