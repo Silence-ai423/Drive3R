@@ -18,6 +18,7 @@ function updateDemo() {
 }
 function updatePauseControls() {
   pauseButton.setAttribute("aria-pressed", String(paused));
+  pauseButton.title = paused ? "Play animation" : "Pause and inspect the final ground-truth reveal";
   document.getElementById("pause-label").textContent = paused ? "Play" : "Pause";
   pauseButton.querySelector(".pause-icon").textContent = paused ? "▷" : "Ⅱ";
   document.getElementById("gif-status").textContent = paused ? "FINAL FRAME" : "LOOPING GIF";
