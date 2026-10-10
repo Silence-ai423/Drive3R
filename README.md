@@ -2,7 +2,7 @@
 
 Static research project website for **Drive3R: Block-wise Streaming Geometric Foundation Models for Autonomous Driving**.
 
-- Paper text, authors, figures, and experimental results follow the AutoLab v19 manuscript.
+- Paper text, authors, figures, and experimental results follow the AutoLab v20 manuscript.
 - The opening animated demo and its controls have been removed. The introduction now leads directly into the project overview.
 - Benchmark tabs support keyboard navigation.
 - Original media assets remain available in the repository for future editing.
